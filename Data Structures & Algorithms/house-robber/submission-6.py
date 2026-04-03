@@ -1,0 +1,20 @@
+from typing import List
+
+class Solution:
+    def rob(self, nums: List[int])->int:
+        
+        rob1 = 0
+        rob2 = 0
+        
+        for n in nums:
+            temp = rob2
+            rob2 = max(rob2, rob1+n)
+            rob1 = temp
+        return rob2
+# time complexity: O(n)
+# space complexity: O(1)
+sol = Solution()
+nums = [1,1,3,3]
+print(sol.rob(nums))
+nums = [2,9,8,3,6]
+print(sol.rob(nums))

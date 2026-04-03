@@ -1,0 +1,42 @@
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str)->int:
+        
+        # bottom-up
+        
+        dp = [[0 for j in range(len(text2)+1)]
+                for i in range(len(text1)+1)]
+        
+        for i in range(len(text1)-1,-1,-1):
+            for j in range(len(text2)-1,-1,-1):
+                if text1[i] == text2[j]:
+                    dp[i][j] = dp[i+1][j+1] + 1
+                else:
+                    dp[i][j] = max(dp[i+1][j],dp[i][j+1])
+        return dp[0][0]
+
+# time complexity: O(n * m)
+# space complexity: O(n * m)
+sol = Solution()
+
+text1 = "cat"
+text2 = "crabt" 
+#Output: 3 
+
+print(sol.longestCommonSubsequence(text1,text2))
+
+text1 = "abcd"
+text2 = "abcd"
+#Output: 4
+print(sol.longestCommonSubsequence(text1,text2))
+
+text1 = "abcd"
+text2 = "efgh"
+#Output: 0
+print(sol.longestCommonSubsequence(text1,text2))
+
+
+
+
+
+
+

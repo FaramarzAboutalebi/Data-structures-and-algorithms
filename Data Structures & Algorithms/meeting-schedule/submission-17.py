@@ -1,0 +1,24 @@
+from typing import List
+
+class ObjInterval:
+    def __init__(self,start,end):
+        self.start = start
+        self.end = end
+        
+class Solution:
+    def canAttendMeetings(self, intervals: List[ObjInterval])->bool:
+        
+        if not intervals:
+            return True
+            
+        intervals.sort(key = lambda i:i.start)
+        prevEnd = intervals[0].end
+        
+        for i in range(1, len(intervals)):
+            
+            if intervals[i].start < prevEnd:
+                return False
+            else:
+                prevEnd = max(prevEnd, intervals[i].end)
+        return True
+            
